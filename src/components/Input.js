@@ -11,6 +11,8 @@ const Input = (props) => {
         onChange={props.onChange}
       />
       <button onClick={props.onClick}>Search</button>
+      <button>Next</button>
+      <button>Previous</button>
     </div>
   );
 };

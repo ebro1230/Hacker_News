@@ -10,6 +10,8 @@ function App() {
   const [newPost, setNewPost] = useState("");
   const [query, setQuery] = useState("react");
 
+
+
   const handleChange = (e) => {
     setNewPost(e.target.value);
   };
@@ -28,6 +30,7 @@ function App() {
       </Routes>
       <Input newPost={newPost} onChange={handleChange} onClick={handleClick} />
       <Posts query={query} />
+     
     </div>
   );
 }
