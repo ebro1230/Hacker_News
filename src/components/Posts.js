@@ -28,7 +28,31 @@ export default function Post(props) {
       {posts.length ? (
         posts.map((post) => (
           <div key={post.objectID} className="post">
-            <p>Title: {post.title}</p>
+            {post.title !== undefined &&
+            post.title !== null &&
+            post.title !== "" ? (
+              <>
+                <p>Title: {post.title}</p>
+              </>
+            ) : post.story_title !== undefined &&
+              post.story_title !== null &&
+              post.story_title !== "" ? (
+              <>
+                <p>Title: {post.story_title}</p>
+              </>
+            ) : post._highlightResult.title.value !== undefined &&
+              post._highlightResult.title.value !== null &&
+              (post._highlightResult.title.value !== "") !== undefined &&
+              post._highlightResult.title.value !== "" ? (
+              <p>Title: {post._highlightResult.title.value}</p>
+            ) : post._highlightResult.story_title.value !== undefined &&
+              post._highlightResult.story_title.value !== null &&
+              (post._highlightResult.story_title.value !== "") !== undefined &&
+              post._highlightResult.story_title.value !== "" ? (
+              <p>Title: {post._highlightResult.story_title.value}</p>
+            ) : (
+              <p>No Title Available</p>
+            )}
             <p>Author: {post.author}</p>
             <p>post ID#: {post.objectID}</p>
           </div>
