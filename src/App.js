@@ -9,7 +9,9 @@ function App() {
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
-          <Route path="/search/:query" element={<Home />} />
+          <Route path="/search/:query/page/:pageNum" element={<Home />}>
+            <Route path="page/:pageNum" element={<Home />} />
+          </Route>
         </Route>
       </Routes>
     </div>
