@@ -1,6 +1,5 @@
 import Posts from "../components/Posts";
 import Input from "../components/Input";
-import LoadingIndicator from "../components/LoadingIndicator";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -24,7 +23,6 @@ export default function Home() {
     <>
       <Input newPost={newPost} onChange={handleChange} onClick={handleClick} />
       <Posts />
-      <LoadingIndicator />
     </>
   );
 }
