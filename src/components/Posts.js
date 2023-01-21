@@ -4,7 +4,7 @@ export default function Post() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch(`http://hn.algolia.com/api/v1/search_by_date?query=react`)
+    fetch(`http://hn.algolia.com/api/v1/search_by_date?query=react=`)
       .then((response) => response.json())
       .then((json) => {
         console.log(json.hits);
