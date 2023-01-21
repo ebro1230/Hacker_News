@@ -14,7 +14,7 @@ export default function Post() {
     fetch(`http://hn.algolia.com/api/v1/search_by_date?query=${topic}`)
       .then((response) => {
         console.log(response);
-        response.json();
+        return response.json();
       })
       .then((json) => {
         setPosts(json.hits);
