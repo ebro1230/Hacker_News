@@ -1,28 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
 
 export default function Post() {
   const [posts, setPosts] = useState([]);
-  const [topic, setTopic] = useState("react");
-  const { query } = useParams();
-  const navigation = useNavigate();
-  if (query) {
-    setTopic(query);
-  }
 
   useEffect(() => {
-    fetch(`http://hn.algolia.com/api/v1/search_by_date?query=${topic}`)
-      .then((response) => {
-        console.log(response);
-        return response.json();
-      })
+    fetch(`http://hn.algolia.com/api/v1/search_by_date?query=react`)
+      .then((response) => response.json())
       .then((json) => {
+        console.log(json.hits);
         setPosts(json.hits);
       })
-      .catch((response) => {
-        const errorId = response.value;
-        navigation(`/error/${errorId}`);
-      });
+      .catch(() => alert("Request Failed"));
   }, []);
 
   return (
