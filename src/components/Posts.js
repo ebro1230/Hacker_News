@@ -8,6 +8,8 @@ export default function Post() {
   const [pageNumber, setPageNumber] = useState(1);
   const [numPages, setNumPages] = useState(0);
   const { query, pageNum } = useParams();
+  console.log(query);
+  console.log(pageNum);
 
   useEffect(() => {
     if (pageNum !== "" && pageNum !== undefined) {
@@ -17,18 +19,21 @@ export default function Post() {
   useEffect(() => {
     if (query !== "" && query !== undefined) {
       setTopic(query);
+      console.log(`Topic to search: ${query}`);
     }
   }, [query]);
 
   useEffect(() => {
     trackPromise(
       fetch(
-        `http://hn.algolia.com/api/v1/search?query=${topic}&page=${pageNumber}&hitsPerPage=200`
+        `http://hn.algolia.com/api/v1/search?query=(${topic})&page=${pageNumber}&hitsPerPage=300`
       )
         .then((response) => response.json())
         .then((json) => {
           setPosts(json.hits);
           setNumPages(json.nbPages);
+          console.log(json.nbPages);
+          console.log(json.hits);
         })
         .catch((response) => {
           alert("Request Error");
@@ -44,26 +49,11 @@ export default function Post() {
               {post.title !== undefined &&
               post.title !== null &&
               post.title !== "" ? (
-                <>
-                  <p>Title: {post.title}</p>
-                </>
+                <p>Title: {post.title}</p>
               ) : post.story_title !== undefined &&
                 post.story_title !== null &&
                 post.story_title !== "" ? (
-                <>
-                  <p>Title: {post.story_title}</p>
-                </>
-              ) : post._highlightResult.title.value !== undefined &&
-                post._highlightResult.title.value !== null &&
-                (post._highlightResult.title.value !== "") !== undefined &&
-                post._highlightResult.title.value !== "" ? (
-                <p>Title: {post._highlightResult.title.value}</p>
-              ) : post._highlightResult.story_title.value !== undefined &&
-                post._highlightResult.story_title.value !== null &&
-                (post._highlightResult.story_title.value !== "") !==
-                  undefined &&
-                post._highlightResult.story_title.value !== "" ? (
-                <p>Title: {post._highlightResult.story_title.value}</p>
+                <p>Title: {post.story_title}</p>
               ) : (
                 <p>No Title Available</p>
               )}

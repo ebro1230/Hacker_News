@@ -15,7 +15,8 @@ export default function Home() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    navigation(`/search/${newPost}/page/1`);
+    const searchTerm = newPost.replaceAll(" ", "+");
+    navigation(`/search/${searchTerm}/page/1`);
     setNewPost("");
   };
 
