@@ -1,11 +1,15 @@
 import React from "react";
-import Posts from "./components/Posts";
+import Home from "./views/Home";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
-      <Posts />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search/:query" element={<Home />} />
+      </Routes>
     </div>
   );
 }
