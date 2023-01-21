@@ -1,8 +1,10 @@
 import React from "react";
-import Posts from "./components/Posts";
+import Home from "./views/Home";
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
 import Input from "./components/Input";
 import { useState } from "react";
+
 
 function App() {
   const [newPost, setNewPost] = useState("");
@@ -20,6 +22,10 @@ function App() {
 
   return (
     <div className="App">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search/:query" element={<Home />} />
+      </Routes>
       <Input newPost={newPost} onChange={handleChange} onClick={handleClick} />
       <Posts query={query} />
     </div>
