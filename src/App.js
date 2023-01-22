@@ -6,6 +6,7 @@ import ErrorPage from "./views/ErrorPage";
 
 function App() {
   return (
+    //allows routing based on URL; displaying appropriate pagination and topic seareched for;  funnels to error page if error occurs
     <div className="App">
       <Routes>
         <Route path="/">

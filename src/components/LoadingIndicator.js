@@ -2,6 +2,7 @@ import { ThreeDots } from "react-loader-spinner";
 
 export default function LoadingIndicator() {
   return (
+    //displays three dots loader
     <div
       style={{
         width: "100%",

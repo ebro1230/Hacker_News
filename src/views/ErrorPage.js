@@ -3,9 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 
 export default function ErrorPage() {
-  const { errorType } = useParams();
-  const navigation = useNavigate();
+  const { errorType } = useParams(); //pull error type from url
+  const navigation = useNavigate(); //initializes navigation
   return (
+    //displays appropriate error messages based on if it is HTTPS or Network Error; Displays button to return to home page
     <>
       {errorType.includes("HTTPS") ? (
         <>

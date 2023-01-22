@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Button(props) {
+  //displays button with appropriate values from props
   return (
     <button
       type="button"

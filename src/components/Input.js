@@ -1,8 +1,8 @@
 import React from "react";
-import { useState } from "react";
 
 const Input = (props) => {
   return (
+    //displays search bar with button at the end
     <div className="row">
       <div className="col-2"></div>
       <div className="col">

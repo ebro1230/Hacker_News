@@ -4,16 +4,17 @@ import LoadingIndicator from "./LoadingIndicator";
 import Button from "./Button";
 
 export default function Post() {
-  const [posts, setPosts] = useState([]);
-  const [topic, setTopic] = useState("react");
-  const [numPages, setNumPages] = useState(0);
-  let { query, page } = useParams();
-  const [pageNum, setPageNum] = useState(0);
+  const [posts, setPosts] = useState([]); //initializes posts array
+  const [topic, setTopic] = useState("react"); //initializes topic being searched for
+  const [numPages, setNumPages] = useState(0); //initializes the number of pages a topic has
+  let { query, page } = useParams(); //pulls the topic and page that is provided in the url from Search feature & Pagination
+  const [pageNum, setPageNum] = useState(0); //initializes the page number being displayed
   const [promiseInProgress, setPromiseInProgress] = useState(false);
-  const [noResults, setNoResults] = useState([1]);
-  const navigation = useNavigate();
-  let [num, setNum] = useState(1);
+  const [noResults, setNoResults] = useState([1]); //array to determine if no results are found for a topic
+  const navigation = useNavigate(); //navigation from page to page
+  let [num, setNum] = useState(1); //numbering of results in the table
 
+  //Sets the page number to display for the fetch if it isn't the first page; sets the numbering of posts based on page
   useEffect(() => {
     if (page !== "" && page !== undefined) {
       page = Number(page);
@@ -21,46 +22,53 @@ export default function Post() {
       setNum(page * 30 + 1);
     }
   }, [page]);
+
+  //Sets the topic for the fetch if it comes from the search function
   useEffect(() => {
     if (query !== "" && query !== undefined) {
       setTopic(query);
     }
   }, [query]);
 
+  //fetches posts based on topic & page number
   useEffect(() => {
-    setPromiseInProgress(true);
+    setPromiseInProgress(true); //tells loader indicator to display
     fetch(
-      `http://hn.algolia.com/api/v1/search?query=(${topic})&page=${pageNum}&hitsPerPage=30`
+      `http://hn.algolia.com/api/v1/search?query=(${topic})&page=${pageNum}&hitsPerPage=30` //fetch api
     )
       .then((response) => {
+        //checks to see if there is an HTTP Status error & changes page to error page
         if (!response.ok) {
           navigation(`/error/HTTPStatusError${response.status}`);
         } else {
           return response;
         }
       })
-      .then((response) => response.json())
+      .then((response) => response.json()) //turns response into JSON
       .then((json) => {
+        //sets the post array with data that is fetched; the number of pages based on the topic searched; determines if no results are found
         setPosts(json.hits);
         setNumPages(json.nbPages);
         console.log(json.hits);
         setNoResults(json);
       })
       .catch((error) => {
+        //catches Network Errors & changes page to error page
         navigation(`/error/${error}`);
       })
       .finally(() => {
-        setPromiseInProgress(false);
+        setPromiseInProgress(false); //tells loader indicator to stop displaying
       });
   }, [topic, pageNum]);
 
   return (
     <div className="block">
-      {promiseInProgress === true ? (
+      {promiseInProgress === true ? ( //displays loading indicator
         <LoadingIndicator />
       ) : (
+        //displays table of results post# & post Title; Displays if no results match search; displays pagination buttons
         <div className="row">
-          <div className="col-2"></div>
+          <div className="col-2"></div>s
           <div className="col">
             <table className="table table-sm table-hover table-striped">
               <thead>
