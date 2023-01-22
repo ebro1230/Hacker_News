@@ -14,14 +14,36 @@ export default function Home() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    const searchTerm = newPost.replaceAll(" ", "+");
-    navigation(`/search/${searchTerm}/page/1`);
-    setNewPost("");
+    if (newPost == "") {
+      alert("Please Enter a Topic");
+    } else {
+      const searchTerm = newPost.replaceAll(" ", "+");
+      navigation(`/search/${searchTerm}/page/1`);
+      setNewPost("");
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      if (newPost == "") {
+        alert("Please Enter a Topic");
+      } else {
+        const searchTerm = newPost.replaceAll(" ", "+");
+        navigation(`/search/${searchTerm}/page/1`);
+        setNewPost("");
+      }
+    }
   };
 
   return (
     <>
-      <Input newPost={newPost} onChange={handleChange} onClick={handleClick} />
+      <br />
+      <Input
+        newPost={newPost}
+        onChange={handleChange}
+        onClick={handleClick}
+        onKeyDown={handleKeyDown}
+      />
       <Posts />
     </>
   );

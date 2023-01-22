@@ -11,7 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.btn-secondary {
+  margin-left: 0.1rem !important;
+  margin-right: 0.1rem !important;
+}
 
-.post {
-  border: black 1px solid
+.table-warning {
+  background-color: rgb(253, 149, 5) !important;
 }
