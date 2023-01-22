@@ -68,7 +68,7 @@ export default function Post() {
       ) : (
         //displays table of results post# & post Title; Displays if no results match search; displays pagination buttons
         <div className="row">
-          <div className="col-2"></div>s
+          <div className="col-2"></div>
           <div className="col">
             <table className="table table-sm table-hover table-striped">
               <thead>
