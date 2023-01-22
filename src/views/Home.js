@@ -20,7 +20,7 @@ export default function Home() {
       alert("Please Enter a Topic");
     } else {
       const searchTerm = newPost.replaceAll(" ", "+"); //changes search to string with + to avoid errors when searching multiple words
-      navigation(`/search/${searchTerm}/page/1`); //navigates to first page of results
+      navigation(`/search/${searchTerm}/page/0`); //navigates to first page of results
       setNewPost(""); //reinitializes search input value to empty
     }
   };
@@ -34,7 +34,7 @@ export default function Home() {
         alert("Please Enter a Topic");
       } else {
         const searchTerm = newPost.replaceAll(" ", "+"); //changes search to string with + to avoid errors when searching multiple words
-        navigation(`/search/${searchTerm}/page/1`); //navigates to first page of results
+        navigation(`/search/${searchTerm}/page/0`); //navigates to first page of results
         setNewPost(""); //reinitializes search input value to empty
       }
     }
