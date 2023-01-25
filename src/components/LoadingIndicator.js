@@ -1,4 +1,4 @@
-import { ThreeDots } from "react-loader-spinner";
+zimport { ThreeDots } from "react-loader-spinner";
 
 export default function LoadingIndicator() {
   return (
