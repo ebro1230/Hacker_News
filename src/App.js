@@ -2,6 +2,7 @@ import React from "react";
 import Home from "./views/Home";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
+<<<<<<< HEAD
 import Input from "./components/Input";
 import { useState } from "react";
 import Posts from "./components/Posts";
@@ -31,6 +32,18 @@ function App() {
       <Input newPost={newPost} onChange={handleChange} onClick={handleClick} />
       <Posts query={query} />
      
+=======
+
+function App() {
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/">
+          <Route index element={<Home />} />
+          <Route path="/search/:query/page/:pageNum" element={<Home />} />
+        </Route>
+      </Routes>
+>>>>>>> main
     </div>
   );
 }
