@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import LoadingIndicator from "./LoadingIndicator";
 
 export default function Post() {
@@ -37,7 +38,6 @@ export default function Post() {
         response.json();
       })
       .then((json) => {
-        console.log(json.hits);
         setPosts(json.hits);
         setNumPages(json.nbPages);
         setNoResults(json);
