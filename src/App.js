@@ -9,10 +9,10 @@ function App() {
     //allows routing based on URL; displaying appropriate pagination and topic seareched for;  funnels to error page if error occurs
     <div className="App">
       <Routes>
-        <Route path="/">
+        <Route path="Hacker_News/">
           <Route index element={<Home />} />
-          <Route path="/search/:query/page/:page" element={<Home />} />
-          <Route path="/error/:errorType" element={<ErrorPage />} />
+          <Route path="search/:query/page/:page" element={<Home />} />
+          <Route path="error/:errorType" element={<ErrorPage />} />
         </Route>
       </Routes>
     </div>

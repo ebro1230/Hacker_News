@@ -39,7 +39,7 @@ export default function Post() {
       .then((response) => {
         //checks to see if there is an HTTP Status error & changes page to error page
         if (!response.ok) {
-          navigation(`/error/HTTPStatusError${response.status}`);
+          navigation(`/Hacker_News/error/HTTPStatusError${response.status}`);
         } else {
           return response;
         }
@@ -54,7 +54,7 @@ export default function Post() {
       })
       .catch((error) => {
         //catches Network Errors & changes page to error page
-        navigation(`/error/${error}`);
+        navigation(`/Hacker_News/error/${error}`);
       })
       .finally(() => {
         setPromiseInProgress(false); //tells loader indicator to stop displaying
@@ -69,7 +69,7 @@ export default function Post() {
       .then((response) => {
         //checks to see if there is an HTTP Status error & changes page to error page
         if (!response.ok) {
-          navigation(`/error/HTTPStatusError${response.status}`);
+          navigation(`/Hacker_News/error/HTTPStatusError${response.status}`);
         } else {
           return response;
         }
@@ -84,7 +84,7 @@ export default function Post() {
       })
       .catch((error) => {
         //catches Network Errors & changes page to error page
-        navigation(`/error/${error}`);
+        navigation(`/Hacker_News/error/${error}`);
       })
       .finally(() => {
         setPromiseInProgress(false); //tells loader indicator to stop displaying
@@ -142,19 +142,23 @@ export default function Post() {
       {pageNum > 0 ? (
         <Button
           page={"First"}
-          onClick={() => navigation(`/search/${topic}/page/0`)}
+          onClick={() => navigation(`/Hacker_News/search/${topic}/page/0`)}
         />
       ) : null}
       {pageNum > 2 ? (
         <Button
           page={pageNum - 2}
-          onClick={() => navigation(`/search/${topic}/page/${pageNum - 2}`)}
+          onClick={() =>
+            navigation(`/Hacker_News/search/${topic}/page/${pageNum - 2}`)
+          }
         />
       ) : null}
       {pageNum > 1 ? (
         <Button
           page={pageNum - 1}
-          onClick={() => navigation(`/search/${topic}/page/${pageNum - 1}`)}
+          onClick={() =>
+            navigation(`/Hacker_News/search/${topic}/page/${pageNum - 1}`)
+          }
         />
       ) : null}
       {pageNum !== 0 && pageNum !== Number(numPages) - 1 ? (
@@ -163,20 +167,26 @@ export default function Post() {
       {pageNum <= Number(numPages) - 2 ? (
         <Button
           page={pageNum + 1}
-          onClick={() => navigation(`/search/${topic}/page/${pageNum + 1}`)}
+          onClick={() =>
+            navigation(`/Hacker_News/search/${topic}/page/${pageNum + 1}`)
+          }
         />
       ) : null}
       {pageNum <= Number(numPages) - 3 ? (
         <Button
           page={pageNum + 2}
-          onClick={() => navigation(`/search/${topic}/page/${pageNum + 2}`)}
+          onClick={() =>
+            navigation(`/Hacker_News/search/${topic}/page/${pageNum + 2}`)
+          }
         />
       ) : null}
       {pageNum <= Number(numPages) - 2 ? (
         <Button
           page={"Last"}
           onClick={() =>
-            navigation(`/search/${topic}/page/${Number(numPages) - 1}`)
+            navigation(
+              `/Hacker_News/search/${topic}/page/${Number(numPages) - 1}`
+            )
           }
         />
       ) : null}
