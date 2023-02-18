@@ -51,7 +51,6 @@ export default function Post() {
         //sets the post array with data that is fetched; the number of pages based on the topic searched; determines if no results are found
         setPosts(json.hits);
         setNumPages(json.nbPages);
-        console.log(json.hits);
         setNoResults(json);
       })
       .catch((error) => {
@@ -83,7 +82,6 @@ export default function Post() {
         //sets the post array with data that is fetched; the number of pages based on the topic searched; determines if no results are found
         setPosts(json.hits);
         setNumPages(json.nbPages);
-        console.log(json.hits);
         setNoResults(json);
       })
       .catch((error) => {
