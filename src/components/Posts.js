@@ -34,7 +34,7 @@ export default function Post() {
   useEffect(() => {
     setPromiseInProgress(true); //tells loader indicator to display
     fetch(
-      `http://hn.algolia.com/api/v1/search?query=(${topic})&page=${pageNum}&hitsPerPage=30` //fetch api
+      `https://hn.algolia.com/api/v1/search?query=(${topic})&page=${pageNum}&hitsPerPage=30` //fetch api
     )
       .then((response) => {
         //checks to see if there is an HTTP Status error & changes page to error page
