@@ -8,7 +8,7 @@ export default function Post() {
   const [topic, setTopic] = useState("react"); //initializes topic being searched for
   const [numPages, setNumPages] = useState(0); //initializes the number of pages a topic has
   let { query, page } = useParams(); //pulls the topic and page that is provided in the url from Search feature & Pagination
-  const [pageNum, setPageNum] = useState(0); //initializes the page number being displayed
+  const [pageNum, setPageNum] = useState(1); //initializes the page number being displayed
   const [promiseInProgress, setPromiseInProgress] = useState(false);
   const [noResults, setNoResults] = useState([1]); //array to determine if no results are found for a topic
   const navigation = useNavigate(); //navigation from page to page
@@ -19,7 +19,7 @@ export default function Post() {
     if (page !== "" && page !== undefined) {
       page = Number(page);
       setPageNum(page);
-      setNum(page * 30 + 1);
+      setNum((page - 1) * 30 + 1);
     }
   }, [page]);
 
@@ -34,7 +34,9 @@ export default function Post() {
   useEffect(() => {
     setPromiseInProgress(true); //tells loader indicator to display
     fetch(
-      `https://hn.algolia.com/api/v1/search?query=(${topic})&page=${pageNum}&hitsPerPage=30` //fetch api
+      `https://hn.algolia.com/api/v1/search?query=(${topic})&page=${
+        pageNum - 1
+      }&hitsPerPage=30` //fetch api
     )
       .then((response) => {
         //checks to see if there is an HTTP Status error & changes page to error page
@@ -64,7 +66,9 @@ export default function Post() {
   useEffect(() => {
     setPromiseInProgress(true); //tells loader indicator to display
     fetch(
-      `https://hn.algolia.com/api/v1/search?query=(${topic})&page=${pageNum}&hitsPerPage=30` //fetch api
+      `https://hn.algolia.com/api/v1/search?query=(${topic})&page=${
+        pageNum - 1
+      }&hitsPerPage=30` //fetch api
     )
       .then((response) => {
         //checks to see if there is an HTTP Status error & changes page to error page
@@ -98,7 +102,7 @@ export default function Post() {
       ) : (
         //displays table of results post# & post Title; Displays if no results match search; displays pagination buttons
         <div className="row">
-          <div className="col-2"></div>
+          <div className="col-md-2"></div>
           <div className="col">
             <table className="table table-sm table-hover table-striped">
               <thead>
@@ -135,14 +139,14 @@ export default function Post() {
               </tbody>
             </table>
           </div>
-          <div className="col-2"></div>
+          <div className="col-md-2"></div>
         </div>
       )}
 
-      {pageNum > 0 ? (
+      {pageNum > 1 ? (
         <Button
           page={"First"}
-          onClick={() => navigation(`/Hacker_News/search/${topic}/page/0`)}
+          onClick={() => navigation(`/Hacker_News/search/${topic}/page/1`)}
         />
       ) : null}
       {pageNum > 2 ? (
@@ -161,7 +165,7 @@ export default function Post() {
           }
         />
       ) : null}
-      {pageNum !== 0 && pageNum !== Number(numPages) - 1 ? (
+      {pageNum !== 1 && pageNum !== Number(numPages) ? (
         <Button page={"..."} />
       ) : null}
       {pageNum <= Number(numPages) - 2 ? (
@@ -184,9 +188,7 @@ export default function Post() {
         <Button
           page={"Last"}
           onClick={() =>
-            navigation(
-              `/Hacker_News/search/${topic}/page/${Number(numPages) - 1}`
-            )
+            navigation(`/Hacker_News/search/${topic}/page/${Number(numPages)}`)
           }
         />
       ) : null}

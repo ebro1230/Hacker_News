@@ -4,7 +4,7 @@ const Input = (props) => {
   return (
     //displays search bar with button at the end
     <div className="row">
-      <div className="col-2"></div>
+      <div className="col-md-2"></div>
       <div className="col">
         <div className="input-group mb-3">
           <input
@@ -28,7 +28,7 @@ const Input = (props) => {
           </div>
         </div>
       </div>
-      <div className="col-2"></div>
+      <div className="col-md-2"></div>
     </div>
   );
 };
