@@ -61,6 +61,36 @@ export default function Post() {
       });
   }, [topic, pageNum]);
 
+  useEffect(() => {
+    setPromiseInProgress(true); //tells loader indicator to display
+    fetch(
+      `http://hn.algolia.com/api/v1/search?query=(${topic})&page=${pageNum}&hitsPerPage=30` //fetch api
+    )
+      .then((response) => {
+        //checks to see if there is an HTTP Status error & changes page to error page
+        if (!response.ok) {
+          navigation(`/error/HTTPStatusError${response.status}`);
+        } else {
+          return response;
+        }
+      })
+      .then((response) => response.json()) //turns response into JSON
+      .then((json) => {
+        //sets the post array with data that is fetched; the number of pages based on the topic searched; determines if no results are found
+        setPosts(json.hits);
+        setNumPages(json.nbPages);
+        console.log(json.hits);
+        setNoResults(json);
+      })
+      .catch((error) => {
+        //catches Network Errors & changes page to error page
+        navigation(`/error/${error}`);
+      })
+      .finally(() => {
+        setPromiseInProgress(false); //tells loader indicator to stop displaying
+      });
+  }, []);
+
   return (
     <div className="block">
       {promiseInProgress === true ? ( //displays loading indicator
