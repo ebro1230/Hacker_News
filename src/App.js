@@ -11,8 +11,8 @@ function App() {
       <Routes>
         <Route path="/">
           <Route index element={<Home />} />
-          <Route path="search/:query/page/:page" element={<Home />} />
-          <Route path="error/:errorType" element={<ErrorPage />} />
+          <Route path="/search/:query/page/:page" element={<Home />} />
+          <Route path="/error/:errorType" element={<ErrorPage />} />
         </Route>
       </Routes>
     </div>
