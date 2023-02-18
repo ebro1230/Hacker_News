@@ -23,7 +23,7 @@ export default function ErrorPage() {
       <Button
         page="Go Back to Home Page"
         id={errorType}
-        onClick={() => navigation("/")}
+        onClick={() => navigation("/Hacker_News/")}
       />
     </>
   );
